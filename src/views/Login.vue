@@ -79,7 +79,7 @@ export default {
     password: { required, minLength: minLength(6) },
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -90,9 +90,10 @@ export default {
         password: this.password,
       };
 
-      console.log("loginData", loginData);
-
-      this.$router.push("/");
+      try {
+        await this.$store.dispatch("login", loginData);
+        this.$router.push("/");
+      } catch (e) {}
     },
   },
   mounted() {
