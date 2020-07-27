@@ -1,11 +1,14 @@
 <template>
   <div class="app-main-layout">
 
-    <Navbar />
+    <Navbar @move-sidebar="sidebarIsOpen = !sidebarIsOpen" />
 
-    <Sidebar />
+    <Sidebar v-model="sidebarIsOpen" />
 
-    <main class="app-content">
+    <main
+      class="app-content"
+      :class="{full: !sidebarIsOpen}"
+    >
       <div class="app-page">
         <router-view />
       </div>
@@ -28,6 +31,9 @@ import Sidebar from "@/components/app/Sidebar";
 
 export default {
   name: "main-layout",
+  data: () => ({
+    sidebarIsOpen: true,
+  }),
   components: {
     Navbar,
     Sidebar,
