@@ -59,6 +59,8 @@
 export default {
   data: () => ({
     date: new Date(),
+    interval: null,
+    dropdown: null,
   }),
   methods: {
     logout() {
@@ -67,11 +69,21 @@ export default {
     },
   },
   mounted() {
-    M.Dropdown.init(this.$refs.dropdown, {
+    this.interval = setInterval(() => {
+      this.date = new Date();
+    }, 1000);
+    this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false,
       inDuration: 300,
       outDuration: 300,
     });
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
+
+    if (this.dropdown && this.dropdown.destroy) {
+      this.dropdown.destroy();
+    }
   },
 };
 </script>
