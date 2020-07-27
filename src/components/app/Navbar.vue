@@ -8,7 +8,7 @@
         >
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">12.12.12</span>
+        <span class="black-text">{{date}}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
@@ -17,6 +17,7 @@
             class="dropdown-trigger black-text"
             href="#"
             data-target="dropdown"
+            ref="dropdown"
           >
             USER NAME
             <i class="material-icons right">arrow_drop_down</i>
@@ -27,12 +28,12 @@
             class='dropdown-content'
           >
             <li>
-              <a
-                href="#"
+              <router-link
+                to="/profile"
                 class="black-text"
               >
                 <i class="material-icons">account_circle</i>Профиль
-              </a>
+              </router-link>
             </li>
             <li
               class="divider"
@@ -40,6 +41,7 @@
             ></li>
             <li>
               <a
+                @click.prevent="logout"
                 href="#"
                 class="black-text"
               >
@@ -52,3 +54,24 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    date: new Date(),
+  }),
+  methods: {
+    logout() {
+      console.log("Logout");
+      this.$router.push("/login?message=logout");
+    },
+  },
+  mounted() {
+    M.Dropdown.init(this.$refs.dropdown, {
+      constrainWidth: false,
+      inDuration: 300,
+      outDuration: 300,
+    });
+  },
+};
+</script>
