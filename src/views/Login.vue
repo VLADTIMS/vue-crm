@@ -1,8 +1,5 @@
 <template>
-  <form
-    class="card auth-card"
-    @submit.prevent="onSubmit"
-  >
+  <form class="card auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
@@ -10,18 +7,22 @@
           id="email"
           type="text"
           v-model.trim="email"
-          :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
-        >
+          :class="{
+            invalid:
+              ($v.email.$dirty && !$v.email.required) ||
+              ($v.email.$dirty && !$v.email.email),
+          }"
+        />
         <label for="email">Email</label>
         <small
           v-if="$v.email.$dirty && !$v.email.required"
           class="helper-text invalid"
-        >Поле Email не должно быть пустым!
+          >Поле Email не должно быть пустым!
         </small>
         <small
           v-else-if="$v.email.$dirty && !$v.email.email"
           class="helper-text invalid"
-        >Введите корректный Email
+          >Введите корректный Email
         </small>
       </div>
       <div class="input-field">
@@ -29,27 +30,30 @@
           id="password"
           type="password"
           v-model.trim="password"
-          :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
-        >
+          :class="{
+            invalid:
+              ($v.password.$dirty && !$v.password.required) ||
+              ($v.password.$dirty && !$v.password.minLength),
+          }"
+        />
         <label for="password">Пароль</label>
         <small
           v-if="$v.password.$dirty && !$v.password.required"
           class="helper-text invalid"
-        >Введите пароль!
+          >Введите пароль!
         </small>
         <small
           v-else-if="$v.password.$dirty && !$v.password.minLength"
           class="helper-text invalid"
-        >Пароль не должен быть меньше {{$v.password.$params.minLength.min}} символов! Сейчас он {{password.length}}
+          >Пароль не должен быть меньше
+          {{ $v.password.$params.minLength.min }} символов! Сейчас он
+          {{ password.length }}
         </small>
       </div>
     </div>
     <div class="card-action">
       <div>
-        <button
-          class="btn waves-effect waves-light auth-submit"
-          type="submit"
-        >
+        <button class="btn waves-effect waves-light auth-submit" type="submit">
           Войти
           <i class="material-icons right">send</i>
         </button>
@@ -61,7 +65,6 @@
       </p>
     </div>
   </form>
-
 </template>
 
 <script>
