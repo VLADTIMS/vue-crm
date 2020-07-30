@@ -2,7 +2,10 @@
   <nav class="navbar orange lighten-1">
     <div class="nav-wrapper">
       <div class="navbar-left">
-        <a href="#" @click.prevent="$emit('move-sidebar')">
+        <a
+          href="#"
+          @click.prevent="$emit('move-sidebar')"
+        >
           <i class="material-icons black-text">dehaze</i>
         </a>
         <span class="black-text">{{ date | date("datetime") }}</span>
@@ -16,19 +19,32 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            USER NAME
+            {{getUname}}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
-          <ul id="dropdown" class="dropdown-content">
+          <ul
+            id="dropdown"
+            class="dropdown-content"
+          >
             <li>
-              <router-link to="/profile" class="black-text">
+              <router-link
+                to="/profile"
+                class="black-text"
+              >
                 <i class="material-icons">account_circle</i>Профиль
               </router-link>
             </li>
-            <li class="divider" tabindex="-1"></li>
+            <li
+              class="divider"
+              tabindex="-1"
+            ></li>
             <li>
-              <a @click.prevent="logout" href="#" class="black-text">
+              <a
+                @click.prevent="logout"
+                href="#"
+                class="black-text"
+              >
                 <i class="material-icons">assignment_return</i>Выйти
               </a>
             </li>
@@ -45,11 +61,17 @@ export default {
     date: new Date(),
     interval: null,
     dropdown: null,
+    userName: "",
   }),
   methods: {
     async logout() {
       await this.$store.dispatch("logout");
       this.$router.push("/login?message=logout");
+    },
+  },
+  computed: {
+    getUname() {
+      return (this.userName = this.$store.getters.info.name);
     },
   },
   mounted() {
