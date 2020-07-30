@@ -8,7 +8,12 @@
       </button>
     </div>
 
-    <div class="row">
+    <Loader v-if="loading" />
+
+    <div
+      v-else
+      class="row"
+    >
       <Budget />
 
       <Currency />
@@ -22,6 +27,10 @@ import Currency from "../components/Currency";
 
 export default {
   name: "home",
+  data: () => ({
+    loading: true,
+    currency: null,
+  }),
   components: {
     Budget,
     Currency,
