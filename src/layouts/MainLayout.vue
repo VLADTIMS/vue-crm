@@ -34,6 +34,11 @@ export default {
   data: () => ({
     sidebarIsOpen: true,
   }),
+  async mounted() {
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch("fetchInfo");
+    }
+  },
   components: {
     Navbar,
     Sidebar,
