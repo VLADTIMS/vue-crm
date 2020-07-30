@@ -4,10 +4,38 @@
       <div class="card-content white-text">
         <span class="card-title">Счет в валюте</span>
 
-        <p class="currency-line">
-          <span>12.0 Р</span>
+        <p
+          v-for="(cur, index) in currencies"
+          :key="index"
+          class="currency-line"
+        >
+          <span>
+            {{getCurrency(cur) | currency(cur)}}
+          </span>
         </p>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["rates"],
+  data: () => ({
+    currencies: ["RUB", "USD", "EUR"],
+  }),
+  computed: {
+    baseCurrency() {
+      return (
+        this.$store.getters.info.budget /
+        (this.rates["RUB"] / this.rates["EUR"])
+      );
+    },
+  },
+  methods: {
+    getCurrency(currency) {
+      return Math.floor(this.baseCurrency * this.rates[currency]);
+    },
+  },
+};
+</script>
