@@ -83,11 +83,10 @@ export default {
     title: { required },
     limit: { minValue: minValue(100) },
   },
-
   methods: {
     async onSubmit() {
       if (this.$v.$invalid) {
-        this.$v.touch();
+        this.$v.$touch();
         return;
       }
 
