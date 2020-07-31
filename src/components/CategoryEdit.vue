@@ -15,8 +15,7 @@
               v-for="c in categories"
               :key="c.id"
               :value="c.id"
-            >
-              {{c.title}}
+            >{{c.title}}
             </option>
           </select>
           <label>Выберите категорию</label>
