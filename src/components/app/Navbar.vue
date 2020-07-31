@@ -82,6 +82,8 @@ export default {
       constrainWidth: false,
       inDuration: 300,
       outDuration: 300,
+      coverTrigger: false,
+      hover: true,
     });
   },
   beforeDestroy() {
