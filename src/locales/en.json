@@ -6,6 +6,9 @@
   "Menu_Bill": "Bill",
   "Menu_History": "History",
   "Menu_Planning": "Planning",
-  "Menu_NewRecord": "New Record",
-  "Menu_Categories": "Categories"
+  "Menu_NewRecord": "NewRecord",
+  "Menu_Categories": "Categories",
+  "Detail_Title": "Details",
+  "Login": "Login",
+  "Register": "Register"
 }
