@@ -9,7 +9,10 @@
 
       <Navbar @move-sidebar="sidebarIsOpen = !sidebarIsOpen" />
 
-      <Sidebar v-model="sidebarIsOpen" />
+      <Sidebar
+        v-model="sidebarIsOpen"
+        :key="locale"
+      />
 
       <main
         class="app-content"
@@ -54,6 +57,9 @@ export default {
   computed: {
     error() {
       return this.$store.getters.error;
+    },
+    locale() {
+      return this.$store.getters.info.locale;
     },
   },
   watch: {
