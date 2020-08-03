@@ -3,26 +3,17 @@
     <div class="page-title">
       <h3>Счет</h3>
 
-      <button
-        class="btn waves-effect waves-light btn-small"
-        @click="refresh"
-      >
+      <button class="btn waves-effect waves-light btn-small" @click="refresh">
         <i class="material-icons">refresh</i>
       </button>
     </div>
 
     <Loader v-if="loading" />
 
-    <div
-      v-else
-      class="row"
-    >
+    <div v-else class="row">
       <Budget :rates="currency.rates" />
 
-      <Currency
-        :rates="currency.rates"
-        :date="currency.date"
-      />
+      <Currency :rates="currency.rates" :date="currency.date" />
     </div>
   </div>
 </template>
@@ -33,6 +24,11 @@ import Currency from "../components/Currency";
 
 export default {
   name: "home",
+  metaInfo() {
+    return {
+      title: this.$title("Menu_Bill"),
+    };
+  },
   data: () => ({
     loading: true,
     currency: null,

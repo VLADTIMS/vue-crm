@@ -6,27 +6,17 @@
 
     <Loader v-if="loading" />
 
-    <p
-      v-else-if="!categories.length"
-      class="center"
-    >Категорий пока нет. <router-link to="/categories">Добавить новую категорию</router-link>
+    <p v-else-if="!categories.length" class="center">
+      Категорий пока нет.
+      <router-link to="/categories">Добавить новую категорию</router-link>
     </p>
 
-    <form
-      v-else
-      class="form"
-      @submit.prevent="onSubmit"
-    >
+    <form v-else class="form" @submit.prevent="onSubmit">
       <div class="input-field">
-        <select
-          ref="select"
-          v-model="category"
-        >
-          <option
-            v-for="c in categories"
-            :key="c.id"
-            :value="c.id"
-          >{{c.title}}</option>
+        <select ref="select" v-model="category">
+          <option v-for="c in categories" :key="c.id" :value="c.id">{{
+            c.title
+          }}</option>
         </select>
         <label>Выберите категорию</label>
       </div>
@@ -62,13 +52,13 @@
           id="amount"
           type="number"
           v-model.number="amount"
-          :class="{invalid: $v.amount.$dirty && !$v.amount.minValue}"
-        >
+          :class="{ invalid: $v.amount.$dirty && !$v.amount.minValue }"
+        />
         <label for="amount">Сумма</label>
         <span
           v-if="$v.amount.$dirty && !$v.amount.minValue"
           class="helper-text invalid"
-        >Минимальное значение {{$v.amount.$params.minValue.min}}
+          >Минимальное значение {{ $v.amount.$params.minValue.min }}
         </span>
       </div>
 
@@ -77,20 +67,19 @@
           id="description"
           type="text"
           v-model="description"
-          :class="{invalid: $v.description.$dirty && !$v.description.required}"
-        >
+          :class="{
+            invalid: $v.description.$dirty && !$v.description.required,
+          }"
+        />
         <label for="description">Описание</label>
         <span
           v-if="$v.description.$dirty && !$v.description.required"
           class="helper-text invalid"
-        >Добавьте, пожалуйста, описание категории
+          >Добавьте, пожалуйста, описание категории
         </span>
       </div>
 
-      <button
-        class="btn waves-effect waves-light"
-        type="submit"
-      >
+      <button class="btn waves-effect waves-light" type="submit">
         Создать
         <i class="material-icons right">send</i>
       </button>
@@ -104,6 +93,11 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "record",
+  metaInfo() {
+    return {
+      title: this.$title("Menu_NewRecord"),
+    };
+  },
   data: () => ({
     loading: true,
     categories: [],
@@ -170,9 +164,8 @@ export default {
         } catch (e) {}
       } else {
         this.$message(
-          `На Вашем счете не достаточно средств (${
-            this.amount - this.info.budget
-          })`
+          `На Вашем счете не достаточно средств (${this.amount -
+            this.info.budget})`
         );
       }
     },

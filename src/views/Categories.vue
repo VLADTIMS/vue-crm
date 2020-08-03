@@ -6,11 +6,7 @@
     <section>
       <Loader v-if="loading" />
 
-      <div
-        v-else
-        class="row"
-      >
-
+      <div v-else class="row">
         <CategoryCreate @created="addNewCategory" />
 
         <CategoryEdit
@@ -19,10 +15,7 @@
           :categories="categories"
           :key="categories.length + updateCount"
         />
-        <p
-          class="center"
-          v-else
-        >Категорий пока нет</p>
+        <p class="center" v-else>Категорий пока нет</p>
       </div>
     </section>
   </div>
@@ -34,6 +27,11 @@ import CategoryEdit from "../components/CategoryEdit";
 
 export default {
   name: "categories",
+  metaInfo() {
+    return {
+      title: this.$title("Menu_Categories"),
+    };
+  },
   data: () => ({
     categories: [],
     loading: true,

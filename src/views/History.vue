@@ -10,10 +10,7 @@
 
     <Loader v-if="loading" />
 
-    <p
-      v-else-if="!records.length"
-      class="center"
-    >
+    <p v-else-if="!records.length" class="center">
       Записей пока нет.
       <router-link to="/record">Добавить новую запись</router-link>
     </p>
@@ -42,6 +39,11 @@ import { Pie } from "vue-chartjs";
 
 export default {
   name: "history",
+  metaInfo() {
+    return {
+      title: this.$title("Menu_History"),
+    };
+  },
   mixins: [paginationMixin],
   extends: Pie,
   data: () => ({

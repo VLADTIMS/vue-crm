@@ -1,48 +1,38 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>{{'ProfileTitle' | locolize}}</h3>
+      <h3>{{ "ProfileTitle" | locolize }}</h3>
     </div>
 
-    <form
-      class="form"
-      @submit.prevent="onSubmit"
-    >
+    <form class="form" @submit.prevent="onSubmit">
       <div class="input-field">
         <input
           id="description"
           type="text"
           v-model="name"
           :class="{
-            invalid:
-              ($v.name.$dirty && !$v.name.required)
+            invalid: $v.name.$dirty && !$v.name.required,
           }"
-        >
-        <label for="description">{{'Name' | locolize}}</label>
+        />
+        <label for="description">{{ "Name" | locolize }}</label>
         <small
           v-if="$v.name.$dirty && !$v.name.required"
           class="helper-text invalid"
-        >{{'Message_EnterName' | locolize}}
+          >{{ "Message_EnterName" | locolize }}
         </small>
       </div>
 
       <div class="switch">
         <label>
           English
-          <input
-            type="checkbox"
-            v-model="isRuLocale"
-          >
+          <input type="checkbox" v-model="isRuLocale" />
           <span class="lever"></span>
           Русский
         </label>
       </div>
 
-      <button
-        class="btn waves-effect waves-light"
-        type="submit"
-      >
-        {{'Update' | locolize}}
+      <button class="btn waves-effect waves-light" type="submit">
+        {{ "Update" | locolize }}
         <i class="material-icons right">send</i>
       </button>
     </form>
@@ -52,8 +42,14 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { required } from "vuelidate/lib/validators";
+import locolizeFilter from "@/filters/locolize.filter";
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title("ProfileTitle"),
+    };
+  },
   data: () => ({
     name: "",
     isRuLocale: true,
