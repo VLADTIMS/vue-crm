@@ -22,15 +22,17 @@
 </template>
 
 <script>
+import locolizeFilter from "@/filters/locolize.filter";
+
 export default {
   props: ["value"],
   data: () => ({
     links: [
-      { title: "Счет", url: "/", exact: true },
-      { title: "История", url: "/history" },
-      { title: "Планирование", url: "/planning" },
-      { title: "Новая запись", url: "/record" },
-      { title: "Категории", url: "/categories" },
+      { title: locolizeFilter("Menu_Bill"), url: "/", exact: true },
+      { title: locolizeFilter("Menu_History"), url: "/history" },
+      { title: locolizeFilter("Menu_Planning"), url: "/planning" },
+      { title: locolizeFilter("Menu_NewRecord"), url: "/record" },
+      { title: locolizeFilter("Menu_Categories"), url: "/categories" },
     ],
   }),
 };
